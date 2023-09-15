@@ -1,7 +1,7 @@
 
 import './App.css';
 import Header from './Header/Header';
-import Flight from './Header/flight/Flight';
+import Flight from './flight/Flight';
 
 function App() {
   return (

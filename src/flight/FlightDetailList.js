@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import moment from 'moment'
 // import { flightListData } from '../../data';
 
 
@@ -28,11 +29,12 @@ const FlightDetailList = () => {
 
     const columns = [
         { id: 'airline', name: 'Airline' },
-        { id: 'flightnumber', name: 'Flight Number' },
-        { id: 'departure', name: 'Departure Airport' },
-        { id: 'arrival', name: 'Arrival Airport' },
-        { id: 'date', name: 'Date' },
-        { id: 'time', name: 'Time' }
+        { id: 'flightNo', name: 'Flight Number' },
+        { id: 'departureStation', name: 'Departure Airport' },
+        { id: 'arrivalStation', name: 'Arrival Airport' },
+        { id: 'departureDate', name: 'Departure Date/Time' },
+        { id: 'arrivalDate', name: 'Arrival Date/Time' },
+        // { id: 'time', name: 'Time' }
     ]
 
 
@@ -55,9 +57,14 @@ const FlightDetailList = () => {
                                 return (
                                     <TableRow key={i}>
                                         {columns && columns.map((column, i) => {
-                                            console.log(row)
+                                           
                                             let value = row[column.id];
-                                            console.log(value)
+                                            // newDate=row
+                                          
+                                          //let  newvalue=moment(row.id.arrivalDate).format("dddd, MMMM Do YYYY, h:mm:ss a")
+                                          // let newvalue=moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
+                                         
+                                           console.log(value)
                                             return (
                                                 <TableCell key={i}>
                                                     {value}
