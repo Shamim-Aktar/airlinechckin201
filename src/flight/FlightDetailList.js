@@ -57,14 +57,12 @@ const FlightDetailList = () => {
                                 return (
                                     <TableRow key={i}>
                                         {columns && columns.map((column, i) => {
-                                           
+
                                             let value = row[column.id];
-                                            // newDate=row
-                                          
-                                          //let  newvalue=moment(row.id.arrivalDate).format("dddd, MMMM Do YYYY, h:mm:ss a")
-                                          // let newvalue=moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
-                                         
-                                           console.log(value)
+
+                                            if (column.id === 'arrivalDate' || column.id === 'departureDate') {
+                                                value = moment(value).format("ddd, MMM Do YYYY, h:mm:ss a")
+                                            }
                                             return (
                                                 <TableCell key={i}>
                                                     {value}

@@ -84,6 +84,24 @@
         "merchandise",
         "BaggageAllowance"
       ]
+    },
+    {
+      "id": "4",
+      "flightNo": "1021",
+      "airline": "Airasia",
+      "departureStation": "VNS",
+      "arrivalStation": "MUM",
+      "departureDate": "2019-12-28T07:30:00",
+      "arrivalDate": "2019-12-28T09:30:00",
+      "special_meals": [
+        "Non-veg-meal",
+        "Maggie",
+        "coffee"
+      ],
+      "ancillary": [
+        "Movie",
+        "Student Discount"
+      ]
     }
   ],
   "PassengerDetailData": [
