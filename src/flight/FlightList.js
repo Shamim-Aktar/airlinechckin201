@@ -1,7 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import {
+    Paper, Table, TableBody,
+    TableCell, TableContainer,
+    TableHead, TableRow, Select, MenuItem
+} from "@mui/material";
 import moment from 'moment'
 // import { flightListData } from '../../data';
 
@@ -10,6 +14,8 @@ import moment from 'moment'
 const FlightDetailList = () => {
 
     const [rows, rowChange] = useState([]);
+    const [filterValue, setFilterValue] = useState('');
+
 
     const fetchFlightList = async () => {
 
@@ -27,6 +33,15 @@ const FlightDetailList = () => {
     }, [])
 
 
+    // const handleChange = (event) => {
+    //     setSelectedOption(event.target.value);
+    // };
+    const handleFilterChange = (event) => {
+        setFilterValue(event.target.value);
+    };
+
+
+
     const columns = [
         { id: 'airline', name: 'Airline' },
         { id: 'flightNo', name: 'Flight Number' },
@@ -37,11 +52,35 @@ const FlightDetailList = () => {
         // { id: 'time', name: 'Time' }
     ]
 
+    const filteredData = rows && rows.filter(item => filterValue === '' || item.airline === filterValue);
+
+    console.log('filterdta', filteredData)
+
 
 
     return (
 
         <div>
+            <Select
+                sx={{
+                    marginTop: 5,
+                    width: 250,
+                    height: 50,
+                    zIndex: 9
+                }}
+                value={filterValue}
+                onChange={handleFilterChange}
+                label='sh'
+            >
+                {filteredData && filteredData.map((row) => (
+
+                    // console.log('row',row)
+                    <MenuItem key={row.id} value={row.id}>
+
+                        {row.airline}
+                    </MenuItem>
+                ))}
+            </Select>
             <Paper sx={{ width: '90%', margin: "2% auto" }}>
                 <TableContainer>
                     <Table>
@@ -53,12 +92,13 @@ const FlightDetailList = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows && rows.map((row, i) => {
+                            {filteredData && filteredData.map((row, i) => {
                                 return (
                                     <TableRow key={i}>
                                         {columns && columns.map((column, i) => {
 
                                             let value = row[column.id];
+                                            console.log('vv', value)
 
                                             if (column.id === 'arrivalDate' || column.id === 'departureDate') {
                                                 value = moment(value).format("ddd, MMM Do YYYY, h:mm:ss a")
