@@ -37,6 +37,7 @@ const FlightDetailList = () => {
     //     setSelectedOption(event.target.value);
     // };
     const handleFilterChange = (event) => {
+        debugger;
         setFilterValue(event.target.value);
     };
 
@@ -75,7 +76,7 @@ const FlightDetailList = () => {
                 {filteredData && filteredData.map((row) => (
 
                     // console.log('row',row)
-                    <MenuItem key={row.id} value={row.id}>
+                    <MenuItem key={row.id} value={row.airline}>
 
                         {row.airline}
                     </MenuItem>
