@@ -1,11 +1,11 @@
 import React from 'react';
-import FlightDetailList from './FlightList';
+import FlightDetail from './FlightDetails';
 
 
 const Flight = () => {
     return (
         <div>
-            <FlightDetailList />
+            <FlightDetail />
         </div>
     );
 };

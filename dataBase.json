@@ -28,6 +28,39 @@
       "role": "staff"
     }
   ],
+  "flightDetails":[{
+    "id":"1",
+    "flightNo":"f-101",
+    "fromPlace":"HYD",
+    "toPlace":"DL",
+    "departureDate": "2019-12-27T09:30:00",
+    "arrivalDate": "2019-12-27T11:30:00"
+  },{
+    
+      "id":"2",
+      "flightNo":"f-103",
+      "fromPlace":"HYD",
+      "toPlace":"BLR",
+      "departureDate": "2019-12-27T22:30:00",
+      "arrivalDate": "2019-12-27T23:00:00"
+  },{
+    "id":"3",
+    "flightNo":"f-106",
+    "fromPlace":"DL",
+    "toPlace":"MUM",
+    "departureDate": "2019-12-27T22:30:00",
+    "arrivalDate": "2019-12-27T23:30:00"
+  },{
+    
+      "id":"4",
+      "flightNo":"f-106",
+      "fromPlace":"HYD",
+      "toPlace":"CHN",
+      "departureDate": "2019-12-27T22:30:00",
+      "arrivalDate": "2019-12-27T23:30:00"
+    
+  }],
+  
   "flightListData": [
     {
       "id": "1",
