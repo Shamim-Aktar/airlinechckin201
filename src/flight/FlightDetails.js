@@ -5,14 +5,20 @@ import {
      Select, MenuItem, FormControl, InputLabel, Grid
 } from "@mui/material";
 import moment from 'moment'
+
+import PassengerList from '../passenger/PassengerList';
 // import { flightListData } from '../../data';
 
 
 
-const FlightDetail = () => {
+const FlightDetails = () => {
 
     const [flightDetail, setFlightDetail] = useState([]);
-   const [selectedValue, setSelectedValue]=useState([])
+  // const [selectedValue, setSelectedValue]=useState([])
+ 
+   const [flightId, setFlightId]=useState("")
+   const [show, setShow]=useState(false)
+  // const [singlePassenger, setSinglePassenger]=useState([])
 
 
     const fetchFlightDetail = async () => {
@@ -28,20 +34,17 @@ const FlightDetail = () => {
 
     useEffect(() => {
         fetchFlightDetail()
-    }, [])
+    }, [] )
 
-
-    // const handleChange = (event) => {
-    //     setSelectedOption(event.target.value);
-    // };
-    const handleChange = (event) => {
-        setSelectedValue(event.target.value);
+    const handleChangeEvent = (event) => {
+        console.log(event.target.value)
+        // const listUrl = 'http://localhost:4000/PassengerDetailData'
+        // const response = await axios.get(`${listUrl}?flight_id=${event.target.value}`)
+        // console.log(response)
+        let flag=!show
+        setFlightId(event.target.value)  
+        setShow(flag)
     };
-
-
-
-  
-
 
 
     return (
@@ -53,29 +56,21 @@ const FlightDetail = () => {
         direction="column"
         justify="space-between"
       >
-        <Grid item>
-            <FormControl  variant="outlined"
-            margin={"1"}
-            style={{ width: "100%" }}>
+        <Grid item><FormControl  variant="outlined"margin={"normal"}>
             <InputLabel id="test-select-label" style={{top: '2.2em'}}>Flight Details</InputLabel>
             <Select
-                sx={{
-                    marginTop: 5,
-                    width: 250,
-                    height: 50,
-                 
-                }}
-                value={selectedValue}
-                onChange={handleChange}
+                sx={{marginTop: 5, width: 250,height: 50 }}
+                onChange={handleChangeEvent}
                 label='Flight Details'
                 variant='outlined'
+                value={flightId}
             >
                 {flightDetail && flightDetail.map((row, i)=>{
 
             
                 console.log(row);
                 return(
-                    <MenuItem key={row.id} value={row.id}>
+                    <MenuItem key={row.flight_id} value={row.flight_id}>
                             {`${row.flightNo} ${row.fromPlace} - ${row.toPlace}
                                 ${moment(row.departureDate).format("ddd MMM Do YYYY h:mm a")} 
                                 ${moment(row.arrivalDate).format("ddd MMM Do YYYY h:mm a")}`
@@ -87,24 +82,12 @@ const FlightDetail = () => {
                 })}
             </Select>
             </FormControl>
-            {/* <Paper sx={{ width: '90%', margin: "2% auto" }}>
-                <TableContainer>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                              
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          Passenhger etail will come here
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </Paper> */}
                 </Grid>
                 </Grid>
+
+                {show && <PassengerList flightId={flightId}/>}
         </div>
     );
 };
 
-export default FlightDetail;
+export default FlightDetails;

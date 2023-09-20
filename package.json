@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "dev": "concurrently \"json-server --watch dataBase.json -p 4000\" \"react-scripts start\"",
+    "dev": "concurrently \"json-server  --watch dataBase.json -p 4000\" \"react-scripts start\"",
     "server:json": "json-server --watch dataBase.json -p 4000",
     "build": "react-scripts build",
     "test": "react-scripts test",

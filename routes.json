@@ -1,0 +1,3 @@
+{
+    "/PassengerDetailData/:flight_id":"PassengerDetailData?flight_id=:flight_id"
+  }
