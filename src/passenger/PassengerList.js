@@ -8,8 +8,10 @@ import './Passengerlist.css'
 
 
 const PassengerList = ({ flightId }) => {
+
   console.log(flightId)
   const [passengerlist, setPassengerList] = useState([])
+
 
 
 
@@ -34,7 +36,12 @@ const PassengerList = ({ flightId }) => {
         <TableContainer component={Paper}>
           <Table aria-label="simple table" stickyHeader>
             <TableHead >
-              <TableRow >
+              <TableRow sx={{
+                "& th": {
+                  color: "rgba(96, 96, 96)",
+                  backgroundColor: "pink"
+                }
+              }}>
                 <TableCell align="center">First Name</TableCell>
                 <TableCell align="center">Last Name</TableCell>
                 <TableCell align="center">Mobile number</TableCell>
