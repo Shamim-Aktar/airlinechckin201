@@ -1,7 +1,8 @@
 import React from 'react';
 import './Seatmap.css'
 
-const Seatmap = () => {
+const Seatmap = (props) => {
+    const color = props.availability === 'AVAILABLE' ? "#499167" : "#FE5F55";
     const numberOfrows = 26;
     const numCols = 6
     const gridCells = [];
@@ -11,7 +12,7 @@ const Seatmap = () => {
         for (let col = 0; col < numCols; col++) {
             const cellKey = `cell-${row}-${col}`;
             gridCells.push(
-                <div className='cell' key={cellKey}>
+                <div className='cell' key={cellKey} style={{ background: color }}>
                     {`${col + 1}${rowLabel}`}
                 </div>
             )
