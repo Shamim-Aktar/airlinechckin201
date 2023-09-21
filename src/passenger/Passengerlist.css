@@ -1,3 +1,12 @@
 .passenger-list .MuiTableCell-head{
-    padding: 2px;
+    padding-left: 9px;
+    padding-right: 9px;
+}
+.passenger-list{
+    width: 90%;
+    margin: 0 auto;
+}
+.passenger-list .MuiPaper-root{
+   
+    margin: 0 auto;
 }

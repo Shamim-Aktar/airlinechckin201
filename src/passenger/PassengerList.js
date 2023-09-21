@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import {
   Table, TableBody, TableCell, TableContainer,
-  TableHead, TableRow, Paper, Grid
+  TableHead, TableRow, Paper, Grid, Box
 } from "@mui/material";
 import './Passengerlist.css'
 
@@ -30,22 +30,31 @@ const PassengerList = ({ flightId }) => {
 
   return (
     <div className='passenger-list'>
-      <Grid item xs={12}>
-        <TableContainer component={Paper}>
+     
+     <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+        <TableContainer component={Paper} >
           <Table aria-label="simple table" stickyHeader>
-            <TableHead >
+            <TableHead sx={{  "& th": {
+        color: "#ffffff",
+        backgroundColor: "#1976d2"
+      } }} >
               <TableRow >
-                <TableCell align="center">First Name</TableCell>
+                <TableCell component="th" scope="row" align="center">First Name</TableCell>
                 <TableCell align="center">Last Name</TableCell>
-                <TableCell align="center">Mobile number</TableCell>
-                <TableCell align="center">Gender</TableCell>
-                <TableCell align="center">Infant</TableCell>
-                <TableCell align="center">Wheelchair</TableCell>
-                <TableCell align="center">Status</TableCell>
-                <TableCell align="center">Seat number</TableCell>
                 <TableCell align="center">DOB</TableCell>
-                <TableCell align="center">Passport</TableCell>
+                <TableCell align="center">Gender</TableCell>
                 <TableCell align="center">Address</TableCell>
+                <TableCell align="center">Mobile number</TableCell>
+              
+                
+                <TableCell align="center">Seat number</TableCell>
+                
+                <TableCell align="center">Passport</TableCell>
+                <TableCell align="center">Wheelchair</TableCell>
+                <TableCell align="center">Infant</TableCell>
+                <TableCell align="center">Status</TableCell>
                 <TableCell align="center">Special meal</TableCell>
                 <TableCell align="center">Ancillary</TableCell>
 
@@ -56,13 +65,15 @@ const PassengerList = ({ flightId }) => {
                 <TableRow key={i}>
                   <TableCell align="center">{row.first_name}</TableCell>
                   <TableCell align="center">{row.last_name}</TableCell>
-                  <TableCell align="center">{row.mobile_no}</TableCell>
+                  <TableCell align="center">{row.date_of_birth}</TableCell>
                   <TableCell align="center">{row.gender}</TableCell>
-                  <TableCell align="center">{row.infant}</TableCell>
-                  <TableCell align="center">{row.wheelChair}</TableCell>
+                  <TableCell align="center">{row.address}</TableCell>
+                  <TableCell align="center">{row.mobile_no}</TableCell>
                   <TableCell align="center">{row.seat_no}</TableCell>
                   <TableCell align="center">{row.passport}</TableCell>
-                  <TableCell align="center">{row.address}</TableCell>
+                  <TableCell align="center">{row.wheelChair}</TableCell>
+                  <TableCell align="center">{row.infant}</TableCell>
+                  <TableCell align="center">{row.status}</TableCell>
                   <TableCell align="center">{row.special_meals}</TableCell>
                   <TableCell align="center">{row.ancillary}</TableCell>
                 </TableRow>
@@ -70,7 +81,9 @@ const PassengerList = ({ flightId }) => {
             </TableBody>
           </Table>
         </TableContainer>
-      </Grid>
+        </Grid>
+        </Grid>
+        </Box>
 
     </div>
   );

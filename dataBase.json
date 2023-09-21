@@ -53,7 +53,7 @@
   },{
     
       "flight_id":"4",
-      "flightNo":"f-106",
+      "flightNo":"f-107",
       "fromPlace":"HYD",
       "toPlace":"CHN",
       "departureDate": "2019-12-27T22:30:00",
@@ -752,7 +752,7 @@
       "gender": "Male",
       "infant": "No",
       "wheelChair": "No",
-      "flight_id": "1",
+      "flight_id": "4",
       "status": "NC",
       "seat_no": "",
       "date_of_birth": "27-Nov-1995",
