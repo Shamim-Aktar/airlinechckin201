@@ -20,11 +20,19 @@ const PassengerList = ({ flightId, wheelchair }) => {
     const fetchPassengerList = async () => {
       const listUrl = 'http://localhost:4000/PassengerDetailData'
       console.log(flightId)
-      // const response = await axios.get(`${listUrl}`)
-      const response = await axios.get(`${listUrl}?flight_id=${flightId}&wheelChair=${wheelchair}`)
-        .catch((error) => {
-          console.log('Err', error)
-        })
+
+      let response = null
+      if (flightId && wheelchair) {
+
+        response = await axios.get(`${listUrl}?flight_id=${flightId}&wheelChair=${wheelchair}`);
+      } else if (flightId) {
+
+        response = await axios.get(`${listUrl}?flight_id=${flightId}`);
+      } else if (wheelchair) {
+
+        response = await axios.get(`${listUrl}?wheelChair=${wheelchair}`);
+      }
+
       console.log(response.data)
       setPassengerList(response.data)
     }

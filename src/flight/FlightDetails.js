@@ -129,7 +129,8 @@ const FlightDetails = () => {
 
             </Grid>
 
-            {!!flightId && wheelchair && <PassengerList flightId={flightId} wheelchair={wheelchair.toString()} />}
+            {(flightId || wheelchair) && <PassengerList flightId={flightId} wheelchair={wheelchair.toString()} />}
+
 
         </div>
     );
