@@ -7,10 +7,11 @@ import {
 import './Passengerlist.css'
 
 
-const PassengerList = ({ flightId }) => {
 
-  console.log(flightId)
+const PassengerList = ({ flightId, wheelchair }) => {
+  console.log(wheelchair)
   const [passengerlist, setPassengerList] = useState([])
+  // const [filteredPassengerList, setFilteredPassengerList]=useState([])
 
 
 
@@ -20,7 +21,7 @@ const PassengerList = ({ flightId }) => {
       const listUrl = 'http://localhost:4000/PassengerDetailData'
       console.log(flightId)
       // const response = await axios.get(`${listUrl}`)
-      const response = await axios.get(`${listUrl}?flight_id=${flightId}`)
+      const response = await axios.get(`${listUrl}?flight_id=${flightId}&wheelChair=${wheelchair}`)
         .catch((error) => {
           console.log('Err', error)
         })
@@ -28,7 +29,7 @@ const PassengerList = ({ flightId }) => {
       setPassengerList(response.data)
     }
     fetchPassengerList()
-  }, [flightId])
+  }, [flightId, wheelchair])
 
   return (
     <div className='passenger-list'>
