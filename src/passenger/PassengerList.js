@@ -5,6 +5,8 @@ import {
   TableHead, TableRow, Paper, Grid, Box
 } from "@mui/material";
 import './Passengerlist.css'
+import Seatmap from '../flight/Seatmap'
+
 
 
 
@@ -13,12 +15,16 @@ const PassengerList = ({ flightId, serviceName }) => {
   const [passengerlist, setPassengerList] = useState([])
   const [checked, setChecked] = useState(true)
 
+  const [seatno, setSeatNo]=useState('')
+  const [wheelchair, setWheelChair]=useState('')
+    
 
   // const [filteredPassengerList, setFilteredPassengerList]=useState([])
 
 
 
-
+          
+         
   useEffect(() => {
 
     setChecked(checked)
@@ -33,17 +39,28 @@ const PassengerList = ({ flightId, serviceName }) => {
 
 
         console.log(response.data)
+        let seatnumber=response.data.map(item=>item.seat_no)
+        let wheelchairservice=response.data.map(item=>item.wheelChair)
+        setWheelChair(wheelchairservice)
+        console.log(wheelchairservice)
+        // seatnumber=seatnumber
+        setSeatNo(seatnumber)
+        console.log('seat', seatnumber)
         setPassengerList(response.data)
       }
     }
+  
     fetchPassengerList()
+    
+   
+   
   }, [flightId, serviceName, checked])
 
   return (
 
     <>
       {
-        passengerlist.length <= 0 ? <div><p>No Record found</p></div> :
+        passengerlist.length <= 0 ? <div><p>No Flight selected</p></div> :
           <div className='passenger-list'>
 
             <Box sx={{ flexGrow: 1 }}>
@@ -99,9 +116,10 @@ const PassengerList = ({ flightId, serviceName }) => {
                     </Table>
                   </TableContainer>
                 </Grid>
+              
               </Grid>
             </Box>
-
+            {  <Seatmap seatNumber={seatno}  serviceName={wheelchair}/>} 
           </div>
       }
     </>

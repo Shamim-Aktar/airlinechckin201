@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <Header />
       <FlightDetails />
-      <Seatmap />
+      {/* <Seatmap /> */}
     </div>
   );
 }

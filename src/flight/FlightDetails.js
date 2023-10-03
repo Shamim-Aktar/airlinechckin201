@@ -6,6 +6,8 @@ import {
 } from "@mui/material";
 import moment from 'moment'
 import PassengerList from '../passenger/PassengerList';
+// import Seatmap from './Seatmap';
+
 // import { flightListData } from '../../data';
 
 const ITEM_HEIGHT = 48;
@@ -85,7 +87,7 @@ const FlightDetails = () => {
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={12} lg={12}>
 
-                    <FormControl variant="outlined" margin={"normal"} sx={{ m: 1, minWidth: 120 }}>
+                    <FormControl  variant="outlined" margin={"normal"} sx={{ m: 1, mt:1, minWidth: 120 }}>
                         <InputLabel id="test-select-label" style={{ top: '2.2em' }}>Flight Details</InputLabel>
                         <Select
                             sx={{ marginTop: 5, width: 250, height: 50 }}
@@ -112,9 +114,10 @@ const FlightDetails = () => {
                         </Select>
                     </FormControl>
 
-                    <FormControl sx={{ m: 1, width: 300 }}>
-                        <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
+                    <FormControl sx={{ m: 1, width: 300 }} variant="outlined" margin={"normal"} style={{ top: '2.2em' }}>
+                        <InputLabel id="demo-multiple-checkbox-label" >Tag</InputLabel>
                         <Select
+                             sx={{ marginTop: 0.5, width: 250, height: 50 }}
                             labelId="demo-multiple-checkbox-label"
                             id="demo-multiple-checkbox"
                             multiple
@@ -141,8 +144,10 @@ const FlightDetails = () => {
             </Grid>
 
             {(flightId || serviceName) && <PassengerList flightId={flightId} serviceName={serviceName} />}
+           
+          
 
-
+                                
         </div>
     );
 };
