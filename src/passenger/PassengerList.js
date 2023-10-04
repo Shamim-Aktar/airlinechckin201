@@ -15,16 +15,22 @@ const PassengerList = ({ flightId, serviceName }) => {
   const [passengerlist, setPassengerList] = useState([])
   const [checked, setChecked] = useState(true)
 
-  const [seatno, setSeatNo]=useState('')
-  const [wheelchair, setWheelChair]=useState('')
-    
+  const [seatno, setSeatNo] = useState('')
+  const [wheelchair, setWheelChair] = useState('')
+
 
   // const [filteredPassengerList, setFilteredPassengerList]=useState([])
 
+  let passengerMappedSeat = passengerlist.map((passenger) => {
+    return {
+      seat_no: passenger.seat_no,
+      wheelChair: passenger.wheelChair,
+      infant: passenger.infant
+    }
+  })
 
 
-          
-         
+
   useEffect(() => {
 
     setChecked(checked)
@@ -39,8 +45,8 @@ const PassengerList = ({ flightId, serviceName }) => {
 
 
         console.log(response.data)
-        let seatnumber=response.data.map(item=>item.seat_no)
-        let wheelchairservice=response.data.map(item=>item.wheelChair)
+        let seatnumber = response.data.map(item => item.seat_no)
+        let wheelchairservice = response.data.map(item => item.wheelChair)
         setWheelChair(wheelchairservice)
         console.log(wheelchairservice)
         // seatnumber=seatnumber
@@ -49,11 +55,11 @@ const PassengerList = ({ flightId, serviceName }) => {
         setPassengerList(response.data)
       }
     }
-  
+
     fetchPassengerList()
-    
-   
-   
+
+
+
   }, [flightId, serviceName, checked])
 
   return (
@@ -116,10 +122,10 @@ const PassengerList = ({ flightId, serviceName }) => {
                     </Table>
                   </TableContainer>
                 </Grid>
-              
+
               </Grid>
             </Box>
-            {  <Seatmap seatNumber={seatno}  serviceName={wheelchair}/>} 
+            {<Seatmap seatNumber={seatno} serviceName={wheelchair} passengerMap={passengerMappedSeat} />}
           </div>
       }
     </>

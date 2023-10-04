@@ -22,3 +22,27 @@
     font-size: 10px;
 
 }
+
+.colorIdentify {
+    position: absolute;
+    right: 13px;
+    top: 64px;
+    border: 2px solid;
+    padding: 0;
+    width: 200px;
+}
+
+.colorIdentify li {
+    display: flex;
+    margin: 0 10px;
+    justify-content: left;
+    align-items: baseline;
+    text-align: left;
+    font-size: 12px;
+}
+
+.clsName {
+    width: 10px;
+    height: 10px;
+    margin: 3px 6px;
+}
