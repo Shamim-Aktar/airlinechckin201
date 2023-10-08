@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Seatmap.css'
 
 
@@ -11,8 +11,10 @@ const Seatmap = ({ seatNumber, serviceName, passengerMap }) => {
 
   //[''yes, 'no']
   //const {name}
-  const [bookedSeat, setBookedSeat] = useState('')
-  const [services, setServices] = useState('Yes')
+  // const [bookedSeat, setBookedSeat] = useState('')
+  //const [services, setServices] = useState('Yes')
+  const [selectedSeat, setSelectedSeat] = useState('');
+  const [selectedPassenger, setSelectedPassenger] = useState(null);
   console.log(seatNumber)
   const numberOfrows = 26;
   const numCols = 6
@@ -55,19 +57,25 @@ const Seatmap = ({ seatNumber, serviceName, passengerMap }) => {
   };
 
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  //const handleOpen = () => setOpen(true);
+
+  const handleOpen = (seatNum) => {
+    setOpen(true);
+    setSelectedSeat(seatNum);
+
+    const passenger = passengerMap.find((s) => s.seat_no === seatNum);
+    setSelectedPassenger(passenger || null);
+  };
   const handleClose = () => setOpen(false)
 
-  useEffect(() => {
-    setBookedSeat(seatNumber)
-    setServices(serviceName)
-  }, [seatNumber, serviceName])
+  // useEffect(() => {
+  //   // setBookedSeat(seatNumber)
+  //   //setServices(serviceName)
+  // }, [seatNumber, serviceName])
 
-  console.log('b', bookedSeat)
-  console.log('ser', services)
+  let seat
 
-
-
+  console.log('selected', selectedPassenger)
   for (let row = 0; row < numberOfrows; row++) {
     const rowLabel = String.fromCharCode(65 + row)
     for (let col = 0; col < numCols; col++) {
@@ -76,8 +84,7 @@ const Seatmap = ({ seatNumber, serviceName, passengerMap }) => {
       let colors;
 
 
-      let seat = passengerMap.find(s => s.seat_no === seatnum)
-
+      seat = passengerMap.find(s => s.seat_no === seatnum)
       if (seat && seat.wheelChair === 'Yes' && seat.infant === 'Yes') {
         colors = '#5fad60'
       }
@@ -94,21 +101,9 @@ const Seatmap = ({ seatNumber, serviceName, passengerMap }) => {
         colors = '#F6F6DF'
       }
 
-      // if (bookedSeat.includes(seatnum.toString()) && sample[0].wheelChair === 'Yes') {
-      //   colors = 'red'
-      // }
-
-      // else if (bookedSeat.includes(seatnum.toString())) {
-      //   colors = 'blue'
-      // }
-
-      // else {
-      //   colors = '#B2BEB5'
-      // }
-
       gridCells.push(
 
-        <div className='cell' key={cellKey} style={{ background: colors }} onClick={handleOpen}>
+        <div className='cell' key={cellKey} style={{ background: colors }} onClick={() => handleOpen(`${rowLabel}${col + 1}`)}>
           {`${rowLabel}${col + 1}`}
         </div>
       )
@@ -140,11 +135,28 @@ const Seatmap = ({ seatNumber, serviceName, passengerMap }) => {
         >
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Text in a modal
+              Seat Number: {selectedSeat}
             </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
+            {selectedPassenger ? (
+              <>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  {`${selectedPassenger.first_name} ${selectedPassenger.last_name} `}
+                </Typography>
+
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  Wheelchair:{selectedPassenger.wheelChair === 'Yes' ? 'Yes' : 'No'}
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  Infant:{selectedPassenger.infant === 'Yes' ? 'Yes' : 'No'}
+                </Typography>
+
+                {/* Add more details as needed */}
+              </>
+            ) : (
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                No passenger details available for this seat.
+              </Typography>
+            )}
           </Box>
         </Modal>
       </div>

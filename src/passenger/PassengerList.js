@@ -23,6 +23,8 @@ const PassengerList = ({ flightId, serviceName }) => {
 
   let passengerMappedSeat = passengerlist.map((passenger) => {
     return {
+      first_name: passenger.first_name,
+      last_name: passenger.last_name,
       seat_no: passenger.seat_no,
       wheelChair: passenger.wheelChair,
       infant: passenger.infant
